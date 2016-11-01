@@ -4,6 +4,7 @@ import android.net.sip.SipAudioCall;
 import android.net.sip.SipSession;
 import android.os.AsyncTask;
 import android.util.JsonReader;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -16,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Created by Museum2015 on 30/10/2016.
@@ -59,7 +61,7 @@ public class PredictionFragment extends AsyncTask<String, Void, StateElectionInf
         conn.setDoInput(true);
         conn.connect();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(new GZIPInputStream(conn.getInputStream())));
         String line;
         StringBuilder predictions = new StringBuilder();
 
@@ -75,6 +77,7 @@ public class PredictionFragment extends AsyncTask<String, Void, StateElectionInf
     protected StateElectionInfo[] doInBackground(String... strings) {
         try {
             String stringResponse = getPredictionInfoFromJson(strings[0]);
+            Log.d("test", stringResponse);
             Gson gson = new Gson();
 
             return gson.fromJson(stringResponse, StateElectionInfo[].class);

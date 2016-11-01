@@ -1,11 +1,9 @@
 package com.example.museum2015.electionprediction;
 
-import org.junit.Assert;
-import org.junit.Test;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -32,8 +30,30 @@ public class PredictionFragmentTest {
 
         PredictionFragment test = new PredictionFragment(mockedListener);
         String result = test.getPredictionInfoFromJson(URL);
+        Gson gson = new Gson();
+        StateElectionInfo[] results = gson.fromJson(result, StateElectionInfo[].class);
+        assertTrue(results[1].state.equals("AL"));
+    }
 
-        assertTrue(result.isEmpty()!=true);
+    @Test
+    public void testingAsyncAndJsonParsing2() throws Exception {
+        PredictionFragment.Listener mockedListener = new PredictionFragment.Listener() {
+            @Override
+            public void onLoaded(StateElectionInfo[] electionPredictions) {
+                return;
+            }
+
+            @Override
+            public void onError() {
+                return;
+            }
+        };
+
+        PredictionFragment test = new PredictionFragment(mockedListener);
+        String result = test.getPredictionInfoFromJson(URL);
+        Gson gson = new Gson();
+        StateElectionInfo[] results = gson.fromJson(result, StateElectionInfo[].class);
+        assertTrue(results[4].state.equals("CA"));
     }
 
 }
