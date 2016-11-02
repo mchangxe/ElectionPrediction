@@ -1,4 +1,4 @@
-package com.example.museum2015.electionprediction;
+package com.example.museum2015.electionprediction.JsonClasses;
 
 import java.util.HashMap;
 import java.util.Map;

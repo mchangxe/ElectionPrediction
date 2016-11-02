@@ -1,17 +1,16 @@
 package com.example.museum2015.electionprediction;
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.example.museum2015.electionprediction.JsonClasses.StateElectionInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements PredictionFragmen
     private static final String KEY_CANDIDATE = "candidate";
     private static final String KEY_PROBABILITY = "probability";
 
+    /*
+     * onCreate methods sets the mListView variable to the actual listView element and executes
+     * the JSON parsing Asynctask.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,12 @@ public class MainActivity extends AppCompatActivity implements PredictionFragmen
     }
 
     /*
-     * Convert json objects to string and calls the loadListView method to populate the list items.
+     * Converts the objects from json to the model and calls the loadListView method to
+     * populate the list items.
+     * @param electionPredictions the variable that holds the java objects obtained from json parsing,
+     *          it will be empty if the json parsing didn't happen correctly. If it is empty, onError()
+     *          will be called and if it is not empty, onLoaded will be called.
+     * @return void
      */
     @Override
     public void onLoaded(StateElectionInfo[] electionPredictions) {
@@ -64,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements PredictionFragmen
 
     /*
      * Show an error toast in case json parsing goes wrong
+     * @return void
      */
     @Override
     public void onError() {
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements PredictionFragmen
 
     /*
      * When clicks on a list item, show a toast with the state name. JUST FOR FUN
+     * @return void
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -82,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements PredictionFragmen
 
     /*
      * MVA, using an adapter to update the list view instead of the AsyncTask
+     * return void
      */
     private void loadListView() {
 

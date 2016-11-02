@@ -1,5 +1,6 @@
 package com.example.museum2015.electionprediction;
 
+import com.example.museum2015.electionprediction.JsonClasses.StateElectionInfo;
 import com.google.gson.Gson;
 
 
@@ -14,6 +15,10 @@ public class PredictionFragmentTest {
 
     public static final String URL = "http://projects.fivethirtyeight.com/2016-election-forecast/summary.json";
 
+    /*
+     * Tests if the json was correctly parsed. ***Needs to implement GZIP in PredictionFragment***
+     * @return true since the json was parsed correct and the second state is AL.
+     */
     @Test
     public void testingAsyncAndJsonParsing() throws Exception {
         PredictionFragment.Listener mockedListener = new PredictionFragment.Listener() {
@@ -35,6 +40,10 @@ public class PredictionFragmentTest {
         assertTrue(results[1].state.equals("AL"));
     }
 
+    /*
+     * Tests if the json was correctly parsed. ***Needs to implement GZIP in PredictionFragment***
+     * @return true since the json was parsed correct and the fifth state is CA.
+     */
     @Test
     public void testingAsyncAndJsonParsing2() throws Exception {
         PredictionFragment.Listener mockedListener = new PredictionFragment.Listener() {
