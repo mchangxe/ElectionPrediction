@@ -1,6 +1,5 @@
 package com.example.museum2015.electionprediction;
 
-import com.example.museum2015.electionprediction.JsonClasses.StateElectionInfo;
 import com.google.gson.Gson;
 
 

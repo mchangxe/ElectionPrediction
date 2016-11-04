@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ElectionPrediction</string>
+    <string name="KEY_STATE">state</string>
+
 </resources>

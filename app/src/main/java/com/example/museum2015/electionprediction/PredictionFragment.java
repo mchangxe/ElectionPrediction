@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 
 import android.util.Log;
 
-import com.example.museum2015.electionprediction.JsonClasses.StateElectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -118,5 +117,7 @@ public class PredictionFragment extends AsyncTask<String, Void, StateElectionInf
             return null;
         }
     }
+
+
 
 }
